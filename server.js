@@ -10,9 +10,13 @@ import budgetRoutes from './routes/budget.Routes.js';
 const app = express();
 config();
 app.use(cors({
-    origin: '*',
+    origin: [
+        'https://spend-sensei-frontend.vercel.app',
+        process.env.FRONTEND_URL || 'http://localhost:3000'
+    ],
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    allowedHeaders: ['Content-Type', 'Authorization']
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true
 }));
 
 const PORT = process.env.PORT || 3000;
